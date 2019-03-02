@@ -9,7 +9,7 @@ var options = {
 */
 
 //Patron singleton eddystone beacon
-export const EddystoneBeacon = (() => {
+exports.EddystoneBeacon = (() => {
     var eddystoneBeaconInstance
 
     return {
