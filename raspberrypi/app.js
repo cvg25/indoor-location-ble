@@ -8,5 +8,5 @@ var options = {
     txPowerLevel: -22,  // override TX Power Level, default value is -21,
 };
 
-eddystoneBeacon.advertiseUid(namespaceId, instanceId, [options]);
+eddystoneBeacon.advertiseUid(namespaceId, instanceId, options);
 console.log("Advertising...")
