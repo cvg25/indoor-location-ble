@@ -1,13 +1,13 @@
 var express = require('express')
 var router = express.Router()
-import { EddystoneBeacon } from './eddystoneBeacon'
+var Beacons = require('./beacons')
 
 //Crea el beacon si no está activo.
 router.post('/beacon', (req, res) => {
 
     var configuration = req.body;
     if (configuration.namespaceID && configuration.instanceID) {
-        var exito = EddystoneBeacon.advertiseUID(configuration.namespaceID, configuration.instanceID, configuration.options)
+        var exito = Beacons.EddystoneBeacon.advertiseUID(configuration.namespaceID, configuration.instanceID, configuration.options)
 
         if (exito) {
             res.status(201).send('Beacon activo!')
@@ -21,7 +21,7 @@ router.post('/beacon', (req, res) => {
 
 //Para el beacon si está activo.
 router.delete('/beacon', (req, res) => {
-    var exito = EddystoneBeacon.stop();
+    var exito = Beacons.EddystoneBeacon.stop();
     if (exito) {
         res.status(200).send('Beacon parado')
     } else {
