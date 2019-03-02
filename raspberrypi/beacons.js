@@ -10,27 +10,22 @@ var options = {
 
 //Patron singleton eddystone beacon
 exports.EddystoneBeacon = (() => {
-    var eddystoneBeaconInstance
+    var instance
+
+    function createInstance() {
+        var eddystoneBeaconInstance = require('eddystone-beacon')
+        return eddystoneBeaconInstance;
+    }
 
     return {
-        advertiseUID: (namespaceID, instanceID, options) => {
-            if (!eddystoneBeaconInstance) {
-                eddystoneBeaconInstance = require('eddystone-beacon')
-                eddystoneBeaconInstance.advertiseUid(namespaceID, instanceID, options)
-                return true
-            } else {
-                return false
+        getInstance: function () {
+            if (!instance) {
+                instance = createInstance();
             }
-        },
-        stop: () => {
-            if (eddystoneBeaconInstance) {
-                eddystoneBeaconInstance.stop()
-                return true
-            } else {
-                return false
-            }
+            return instance;
         }
     }
+
 })();
 
 

@@ -11,26 +11,20 @@ app.post('/beacon', (req, res) => {
 
     var configuration = req.body;
     if (configuration.namespaceID && configuration.instanceID) {
-        var exito = Beacons.EddystoneBeacon.advertiseUID(configuration.namespaceID, configuration.instanceID, configuration.options)
 
-        if (exito) {
-            res.status(201).send('Beacon activo!')
-        } else {
-            res.status(409).send('Ya hay un beacon activo, debes pararlo antes de activar otro: DELETE /beacon')
-        }
+        Beacons.EddystoneBeacon.getInstance().advertiseUID(configuration.namespaceID, configuration.instanceID, configuration.options)
+
+        res.status(201).send('Beacon activo!')
+
     } else {
-        res.status(400).send('Bad request, los campos: namespaceID y instanceID son obligatorios');
+        res.status(400).send('Bad request, los campos: namespaceID y instanceID son obligatorios')
     }
 })
 
 //Detiene el beacon si está activo.
 app.delete('/beacon', (req, res) => {
-    var exito = Beacons.EddystoneBeacon.stop();
-    if (exito) {
-        res.status(200).send('Beacon parado')
-    } else {
-        res.status(409).send('No hay ningun beacon activo')
-    }
+    Beacons.EddystoneBeacon.stop()
+    res.status(200).send('Beacon parado')
 })
 
 app.get('*', (pet, res) => {
