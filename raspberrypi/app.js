@@ -12,7 +12,7 @@ app.post('/beacon', (req, res) => {
     var configuration = req.body;
     if (configuration.namespaceID && configuration.instanceID) {
 
-        Beacons.EddystoneBeacon.getInstance().advertiseUID(configuration.namespaceID, configuration.instanceID, configuration.options)
+        Beacons.EddystoneBeacon.getInstance().advertiseUid(configuration.namespaceID, configuration.instanceID, configuration.options)
 
         res.status(201).send('Beacon activo!')
 
@@ -23,7 +23,7 @@ app.post('/beacon', (req, res) => {
 
 //Detiene el beacon si está activo.
 app.delete('/beacon', (req, res) => {
-    Beacons.EddystoneBeacon.stop()
+    Beacons.EddystoneBeacon.getInstance().stop()
     res.status(200).send('Beacon parado')
 })
 
