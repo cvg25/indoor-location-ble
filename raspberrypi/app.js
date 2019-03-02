@@ -1,4 +1,14 @@
 var eddystoneBeacon = require('eddystone-beacon');
+var express = require('express')
+var app = express();
+const PORT = 3000;
+
+app.get('*', (pet, res) => {
+    res.status(200)
+    res.send('Esto tira')
+})
+
+app.listen(PORT, () => console.log('Servidor express en el puerto: ' + PORT))
 
 var namespaceId = '00010203040506070809';
 var instanceId = 'aabbccddeeff';
