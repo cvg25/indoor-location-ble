@@ -16,16 +16,18 @@ exports.EddystoneBeacon = (() => {
         advertiseUID: (namespaceID, instanceID, options) => {
             if (!eddystoneBeaconInstance) {
                 eddystoneBeaconInstance = require('eddystone-beacon')
-                return eddystoneBeaconInstance.advertiseUid(namespaceID, instanceID, options)
+                eddystoneBeaconInstance.advertiseUid(namespaceID, instanceID, options)
+                return true
             } else {
-                return null
+                return false
             }
         },
         stop: () => {
             if (eddystoneBeaconInstance) {
-                return eddystoneBeaconInstance.stop()
+                eddystoneBeaconInstance.stop()
+                return true
             } else {
-                return null
+                return false
             }
         }
     }

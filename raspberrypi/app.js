@@ -6,16 +6,6 @@ const PORT = 3000;
 
 app.use(bodyParser.json())
 
-//Detiene el beacon si está activo.
-app.delete('/beacon', (req, res) => {
-    var exito = Beacons.EddystoneBeacon.stop();
-    if (exito) {
-        res.status(200).send('Beacon parado')
-    } else {
-        res.status(409).send('No hay ningun beacon activo')
-    }
-})
-
 //Crea el beacon si no está activo.
 app.post('/beacon', (req, res) => {
 
@@ -30,6 +20,16 @@ app.post('/beacon', (req, res) => {
         }
     } else {
         res.status(400).send('Bad request, los campos: namespaceID y instanceID son obligatorios');
+    }
+})
+
+//Detiene el beacon si está activo.
+app.delete('/beacon', (req, res) => {
+    var exito = Beacons.EddystoneBeacon.stop();
+    if (exito) {
+        res.status(200).send('Beacon parado')
+    } else {
+        res.status(409).send('No hay ningun beacon activo')
     }
 })
 
