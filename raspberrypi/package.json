@@ -9,6 +9,7 @@
     },
     "author": "Carlos Velez Garcia",
     "dependencies": {
+        "body-parser": "^1.18.3",
         "eddystone-beacon": "^1.0.7",
         "express": "^4.16.4"
     }
