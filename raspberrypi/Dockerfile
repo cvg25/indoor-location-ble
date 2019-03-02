@@ -1,10 +1,8 @@
-FROM balenalib/raspberrypi3-node:8.11
+FROM cvlzg/rpi-beacon-env
 
-LABEL maintainer="carlosvelezgarcia@gmail.com"
+WORKDIR /app
+COPY . /app
 
-RUN install_packages build-essential bluez bluez-tools python libudev-dev
+RUN npm install
 
-CMD ["bash"]
-
-VOLUME "/code"
-WORKDIR /code
+CMD ["node", "app.js"]
